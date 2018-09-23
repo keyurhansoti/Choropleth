@@ -7,7 +7,7 @@
   "data": [
     {
       "name": "states",
-      "url": "C:/Users/keyur/Documents/us-10m.json",
+      "url": "data/us-10m.json",
       "format": {"type": "topojson", "feature": "states"},
       "transform": [
         { "type": "geopath", "projection": "projection" },
@@ -16,7 +16,7 @@
     }
 	{
       "name": "indemnities",
-      "url": "C:/Users/keyur/Documents/losses2015_transformed.csv",
+      "url": "data/losses2015_transformed.csv",
       "format": {"type": "csv", "parse": "auto"}
 	  "transform": [
     {
