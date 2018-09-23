@@ -12,7 +12,7 @@
       "transform": [
         { "type": "geopath", "projection": "projection" }
       ]
-    },
+    }
   ],
 
   "projections": [
