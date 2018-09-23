@@ -14,22 +14,6 @@
 	  
       ]
     }
-	{
-      "name": "indemnities",
-      "url": "data/losses2015_transformed.csv",
-      "format": {"type": "csv", "parse": "auto"}
-	  "transform": [
-    {
-      "type": "geopoint",
-      "projection": "projection",
-      "fields": ["State_Code", "State_Abv"]
-    },
-    {
-      "type": "filter",
-      "expr": "datum.x != null && datum.y != null"
-    }
-      ]
-    }
   ],
 
   "projections": [
