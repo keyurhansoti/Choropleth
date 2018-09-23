@@ -10,8 +10,7 @@
       "url": "https://raw.githubusercontent.com/keyurhansoti/Choropleth/master/us-10m.json",
       "format": {"type": "topojson", "feature": "states"},
       "transform": [
-        { "type": "geopath", "projection": "projection" },
-	  
+        { "type": "geopath", "projection": "projection" }
       ]
     }
 	{
