@@ -21,7 +21,7 @@
     {
       "type": "geopoint",
       "projection": "projection",
-      "fields": ["State_Code", "State_Abv"]
+      "fields": ["State_Abv", "Amount"]
     },
     {
       "type": "filter",
