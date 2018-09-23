@@ -19,7 +19,7 @@
       "format": {"type": "csv", "parse": "auto"}
 	  "transform": [
     {
-      "type": "states",
+      "type": "geopoint",
       "projection": "projection",
       "fields": ["State_Abv", "Amount"]
     },
