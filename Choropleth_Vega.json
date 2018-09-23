@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v4.json",
+  "width": 960,
+  "height": 500,
+  "autosize": "none",
+
+  "data": [
+    {
+      "name": "states",
+      "url": "C:/Users/keyur/Documents/us-10m.json",
+      "format": {"type": "topojson", "feature": "states"},
+      "transform": [
+        { "type": "geopath", "projection": "projection" },
+	  
+      ]
+    }
+	{
+      "name": "indemnities",
+      "url": "C:/Users/keyur/Documents/losses2015_transformed.csv",
+      "format": {"type": "csv", "parse": "auto"}
+	  "transform": [
+    {
+      "type": "geopoint",
+      "projection": "projection",
+      "fields": ["State_Code", "State_Abv"]
+    },
+    {
+      "type": "filter",
+      "expr": "datum.x != null && datum.y != null"
+    }
+      ]
+    }
+  ],
+
+  "projections": [
+    {
+      "name": "projection",
+      "type": "albersUsa"
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "quantize",
+      "domain": [0, 0.15],
+      "range": {"scheme": "blues", "count": 7}
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "color",
+      "orient": "bottom-right",
+      "title": "Indemnities",
+      "format": "0.1%"
+    }
+  ],
+  "marks": [
+  {
+    "type": "path",
+    "from": {"data": "states"},
+    "encode": {
+      "enter": {
+        "fill": {"value": "#0000FF"},
+        "stroke": {"value": "white"}
+      },
+      "update": {
+        "path": {"field": "path"}
+      }
+    }
+  }
+]
+}
