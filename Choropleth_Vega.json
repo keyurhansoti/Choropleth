@@ -16,12 +16,12 @@
 	{
       "name": "indemnities",
       "url": "https://raw.githubusercontent.com/keyurhansoti/Choropleth/master/losses2015_transformed.csv",
-      "format": {"type": "csv", "parse": "auto"}
+      "format": {"type": "csv", "parse": "auto"},
 	  "transform": [
     {
       "type": "geopoint",
       "projection": "projection",
-      "fields": ["State_Abv", "Amount"]
+      "fields": ["State_Abv"], "values": ["Amount"]
     },
     {
       "type": "filter",
