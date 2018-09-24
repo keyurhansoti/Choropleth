@@ -15,7 +15,7 @@
     },
 	{
       "name": "indemnities",
-      "url": "data/losses2015_transformed.csv",
+      "url": "https://raw.githubusercontent.com/keyurhansoti/Choropleth/master/losses2015_transformed.csv",
       "format": {"type": "csv", "parse": "auto"}
 	  "transform": [
     {
