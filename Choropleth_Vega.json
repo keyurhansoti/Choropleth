@@ -16,18 +16,7 @@
 	{
       "name": "State_Code",
       "url": "https://raw.githubusercontent.com/keyurhansoti/Choropleth/master/losses2015_transformed.csv",
-      "format": {"type": "csv", "parse": "auto"},
-	  "transform": [
-    {
-      "type": "lookup", "from": "State_Code", 
-      "projection": "projection", "key": "State_Code",
-      "fields": ["State_Code"], "values": ["Amount"]
-    },
-    {
-      "type": "filter",
-      "expr": "datum.x != null && datum.y != null"
-    }
-      ]
+      "format": {"type": "csv", "parse": "auto"}
     }
   ],
 
