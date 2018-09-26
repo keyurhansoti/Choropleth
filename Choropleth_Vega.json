@@ -10,7 +10,13 @@
       "url": "https://raw.githubusercontent.com/keyurhansoti/Choropleth/master/losses2015_transformed.csv",
       "format": {"type": "csv", "parse": "auto"},
 			"type": "aggregate",
-			"groupby": ["State_Code"],"fields": ["Amount"],"as": ["Amount"]
+      "transform":   [ {
+      "type": "aggregate",
+      "groupby": ["State_Code"],
+      "fields": ["Amount"],
+      "ops":["sum"],
+      "as": ["Amount"]
+    }]      
     },
     {
       "name": "states",
@@ -19,11 +25,10 @@
       "transform": [
         { "type": "geopath", "projection": "projection" },
         { "type": "lookup", "from": "statescode", "key": "State_Code",
-      "fields": ["State_Code"], "values": ["Amount"]}
+      "fields": ["id"], "values": ["Amount"]}, 
+      { "type": "filter", "expr": "datum.Amount != null" }
       ]
-    }
-  ],
-
+    }  ],
   "projections": [
     {
       "name": "projection",
@@ -31,12 +36,12 @@
     }
   ],
 
-  "scales": [
+"scales": [
     {
       "name": "color",
-      "type": "quantize",
-      "domain":{"data":"statescode","field":"Amount"},
-      "range": {"scheme": "blue", "count": 7}
+      "type": "sequential",
+      "domain": {"data":"statescode","field": "Amount"},
+      "range": {"scheme": "blues", "count": 7}
     }
   ],
 
@@ -44,23 +49,24 @@
     {
       "fill": "color",
       "orient": "bottom-right",
-      "title": "Indemnities",
-      "format": "0.1%"
+      "title": "Losses",
+      "format": "s"
     }
   ],
+
   "marks": [
-  {
-    "type": "path",
-    "from": {"data": "states"},
-    "encode": {
-      "enter": {
-        "fill": {"value": "#0000FF"},
-        "stroke": {"value": "white"}
+    {
+      "type": "shape",
+      "from": {"data": "states"},
+      "encode": {
+        "enter": { "tooltip": {"signal": "format(datum.Amount, 's')"},"stroke": {"value": "black"},"fill": {"value": "#0000FF"}},
+        "update": { "fill": {"scale": "color", "field": "Amount"} },
+        "hover": { "fill": {"value": "red"} }
       },
-      "update": {
-        "path": {"field": "path"}
-      }
+      "transform": [
+        { "type": "geoshape", "projection": "projection" }
+      ]
     }
-  }
-]
+  ]
+
 }
